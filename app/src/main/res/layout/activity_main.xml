@@ -35,6 +35,7 @@
             android:fontFamily="@font/poppins_semibold"
             android:text="Get Started"
             android:textColor="#FFFFFF"
+            android:onClick="onGetStarted"
             android:textSize="19dp" />
     </LinearLayout>
 
