@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">EstateMap</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string-array name="filter_options">
+        <item>Low-High Price</item>
+        <item>High-Low Price</item>
+        <item>Apartment</item>
+        <item>Villa</item>
+    </string-array>>
 </resources>
