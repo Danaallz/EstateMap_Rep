@@ -12,13 +12,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.EstateMap"
         tools:targetApi="31">
-        <activity
-            android:name=".HomePage"
-            android:exported="false" />
+
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyCZy1mj7mo5r4DKRM8U-Efz_j1RfpIxWfI" />
+        <activity
+            android:name=".HomePage"
+            android:exported="false" />
 
         <activity
             android:name=".MapsActivity"
@@ -30,6 +31,9 @@
         <activity
             android:name=".SignUp"
             android:exported="false" />
+        <activity
+            android:name=".SearchPage"
+            android:exported="false"/>
         <activity
             android:name=".MainActivity"
             android:exported="true">

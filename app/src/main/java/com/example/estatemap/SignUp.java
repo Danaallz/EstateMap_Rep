@@ -41,7 +41,6 @@ public class SignUp extends AppCompatActivity {
         userPassword = findViewById(R.id.sign_up_password);
         btnSend = findViewById(R.id.sign_up_btn);
         tvSignIn = findViewById(R.id.tv_sign_in); // Bind TextView here
-
         // Set click listener for the TextView
         tvSignIn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,6 +90,8 @@ public class SignUp extends AppCompatActivity {
                             root.child(userId).setValue(userInfo).addOnCompleteListener(databaseTask -> {
                                 if (databaseTask.isSuccessful()) {
                                     Toast.makeText(SignUp.this, "Data added successfully", Toast.LENGTH_SHORT).show();
+                                    Intent intent = new Intent(this, HomePage.class);
+                                    startActivity(intent);
                                 } else {
                                     Toast.makeText(SignUp.this, "Failed to add data: " + databaseTask.getException().getMessage(), Toast.LENGTH_SHORT).show();
                                 }

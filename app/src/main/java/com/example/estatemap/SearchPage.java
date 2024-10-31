@@ -36,7 +36,7 @@ public class SearchPage extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.search);
 
         // Initialize Firebase
         databaseReference = FirebaseDatabase.getInstance().getReference("properties");

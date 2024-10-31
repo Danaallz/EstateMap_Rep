@@ -3,6 +3,8 @@ package com.example.estatemap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -18,7 +20,6 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
 
     public static class PropertyViewHolder extends RecyclerView.ViewHolder {
         TextView propertyName, propertyPrice, propertyType; // Added propertyType
-
         public PropertyViewHolder(@NonNull View itemView) {
             super(itemView);
             propertyName = itemView.findViewById(R.id.propertyName);
@@ -40,6 +41,7 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
         holder.propertyName.setText(property.getName());
         holder.propertyPrice.setText(String.valueOf(property.getPrice()));
         holder.propertyType.setText(property.getType()); // Bind propertyType
+
     }
 
     @Override

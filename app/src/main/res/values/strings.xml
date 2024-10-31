@@ -7,4 +7,17 @@
         <item>Apartment</item>
         <item>Villa</item>
     </string-array>>
+
+    <string-array name="location_array">
+        <item>Saudi Arabia, Jeddah</item>
+        <item>Saudi Arabia, Riyadh</item>
+        <item>Saudi Arabia, Dammam</item>
+        <item>Saudi Arabia, Makkah</item>
+        <item>Saudi Arabia, Madinah</item>
+        <item>Saudi Arabia, Taif</item>
+        <item>Saudi Arabia, Abha</item>
+        <item>Saudi Arabia, Tabuk</item>
+        <item>Saudi Arabia, Khobar</item>
+        <item>Saudi Arabia, Jubail</item>
+    </string-array>
 </resources>
