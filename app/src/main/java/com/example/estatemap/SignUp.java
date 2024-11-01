@@ -22,7 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class SignUp extends AppCompatActivity {
 
-    private EditText userName, userEmail, userPassword;
+    private EditText userName, userEmail, userPassword, confirmPassword;
     private Button btnSend;
     private TextView tvSignIn;
     private FirebaseDatabase db;
@@ -36,39 +36,51 @@ public class SignUp extends AppCompatActivity {
         // Initialize Firebase Database
         db = FirebaseDatabase.getInstance();
         root = db.getReference("Users"); // Change this to your desired path
+
+        // Bind UI elements
         userName = findViewById(R.id.username);
         userEmail = findViewById(R.id.sign_up_email);
         userPassword = findViewById(R.id.sign_up_password);
+        confirmPassword = findViewById(R.id.Confirm_password); // Bind Confirm Password field
         btnSend = findViewById(R.id.sign_up_btn);
-        tvSignIn = findViewById(R.id.tv_sign_in); // Bind TextView here
-        // Set click listener for the TextView
-        tvSignIn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(SignUp.this, SignIn.class);
-                startActivity(intent); // Start SignIn activity
-            }
+        tvSignIn = findViewById(R.id.tv_sign_in);
+
+        // Set click listener for the Sign-In TextView
+        tvSignIn.setOnClickListener(view -> {
+            Intent intent = new Intent(SignUp.this, SignIn.class);
+            startActivity(intent);
         });
 
-        // Set click listener for the send button
-        btnSend.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                sendToDB(view); // Call sendToDB when the button is clicked
-            }
-        });
+        // Set click listener for the Sign-Up button
+        btnSend.setOnClickListener(this::sendToDB);
     }
 
     public void sendToDB(View view) {
         String name = userName.getText().toString();
         String email = userEmail.getText().toString();
         String password = userPassword.getText().toString();
+        String confirmPasswordText = confirmPassword.getText().toString();
+
+        // Check for empty fields
         if (TextUtils.isEmpty(name) || TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
-            Toast.makeText(SignUp.this, "Please add userName, Email, and Password.",
-                    Toast.LENGTH_SHORT).show();
-        } else {
-            sendDatatoFirebase(name, email, password);
+            Toast.makeText(SignUp.this, "Please add userName, Email, and Password.", Toast.LENGTH_SHORT).show();
+            return;
         }
+
+        // Check if Confirm Password is filled
+        if (TextUtils.isEmpty(confirmPasswordText)) {
+            Toast.makeText(SignUp.this, "Please confirm password.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // Check if Password and Confirm Password match
+        if (!password.equals(confirmPasswordText)) {
+            Toast.makeText(SignUp.this, "Password does not match.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        // All fields are filled and passwords match, proceed with Firebase signup
+        sendDatatoFirebase(name, email, password);
     }
 
     private void sendDatatoFirebase(String name, String email, String password) {
