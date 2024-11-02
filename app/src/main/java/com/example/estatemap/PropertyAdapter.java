@@ -22,9 +22,9 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.Proper
         TextView propertyName, propertyPrice, propertyType; // Added propertyType
         public PropertyViewHolder(@NonNull View itemView) {
             super(itemView);
-            propertyName = itemView.findViewById(R.id.propertyName);
-            propertyPrice = itemView.findViewById(R.id.propertyPrice);
-            propertyType = itemView.findViewById(R.id.propertyType); // Initialize propertyType
+//            propertyName = itemView.findViewById(R.id.propertyName);
+//            propertyPrice = itemView.findViewById(R.id.propertyPrice);
+//            propertyType = itemView.findViewById(R.id.propertyType); // Initialize propertyType
         }
     }
 
