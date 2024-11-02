@@ -2,11 +2,16 @@
     <string name="app_name">EstateMap</string>
     <string name="title_activity_maps">MapsActivity</string>
     <string-array name="filter_options">
-        <item>Low-High Price</item>
-        <item>High-Low Price</item>
         <item>Apartment</item>
         <item>Villa</item>
+        <item>bullding</item>
+        <item>Low-High Price</item>
+        <item>High-Low Price</item>
     </string-array>>
+<!--    <string-array name="filter_options2">-->
+<!--        <item>Low-High Price</item>-->
+<!--        <item>High-Low Price</item>-->
+<!--    </string-array>-->
 
     <string-array name="location_array">
         <item>Saudi Arabia, Jeddah</item>
