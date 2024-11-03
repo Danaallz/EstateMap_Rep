@@ -61,3 +61,5 @@ public class PropertyAdapter1 extends RecyclerView.Adapter<PropertyAdapter1.Prop
         }
     }
 }
+
+

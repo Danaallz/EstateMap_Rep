@@ -1,6 +1,7 @@
 package com.example.estatemap;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -33,8 +34,8 @@ public class HomePage extends AppCompatActivity {
         setContentView(R.layout.activity_home_page);
 
         recyclerViewProperties = findViewById(R.id.recyclerViewProperties);
-        recyclerViewProperties.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-
+        //recyclerViewProperties.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        recyclerViewProperties.setLayoutManager(new GridLayoutManager(this, 2));
         propertyAdapter = new PropertyAdapter1(propertyList);
         recyclerViewProperties.setAdapter(propertyAdapter);
 
@@ -53,7 +54,7 @@ public class HomePage extends AppCompatActivity {
     private void fetchDataFromFirestore() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("Apartment")
-                .limit(10)
+                .limit(9)
                 .get()
                 .addOnSuccessListener(this::onSuccess)
                 .addOnFailureListener(e -> Log.w("HomePage", "Error fetching data", e));
