@@ -181,14 +181,12 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:layout_marginTop="24dp"
-            android:layout_marginBottom="16dp"
             >
 
             <TextView
                 android:id="@+id/nearbyHeader"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingTop="4dp"
                 android:text="Properties"
                 android:textSize="20sp"
                 android:textStyle="bold" />
@@ -205,66 +203,80 @@
         </LinearLayout>
 
 
-        <!-- Property Cards Container -->
+<!--         Property Cards Container -->
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/recyclerViewProperties"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="3dp"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:padding="30dp"-->
+<!--            />-->
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recyclerViewProperties"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="3dp"
-        android:orientation="horizontal"
-        android:padding="30dp"
-        />
 
         <!-- Bottom Navigation Bar -->
-        <LinearLayout
+        <RelativeLayout
             android:id="@+id/bottomBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:padding="8dp"
-            android:background="@drawable/rounded_rectangle"
-            android:layout_marginTop="80dp"
+            android:background="@color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
-            <ImageButton
-                android:id="@+id/navButton1"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_weight="1"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerViewProperties"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                />
 
-                android:background="@android:color/transparent"
-                android:scaleType="fitCenter"
-                android:src="@drawable/dashboard"/>
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:background="@color/white"
+                app:itemBackground="@color/white"
+                android:backgroundTint="@color/white"
+                app:labelVisibilityMode="labeled"
+                app:menu="@menu/bottom_nav_menu" />
+            <!--            <ImageButton-->
+<!--                android:id="@+id/navButton1"-->
+<!--                android:layout_width="40dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:layout_weight="1"-->
+
+<!--                android:background="@android:color/transparent"-->
+<!--                android:scaleType="fitCenter"-->
+<!--                android:src="@drawable/dashboard"/>-->
 
 
-            <ImageButton
-                android:id="@+id/navButton2"
-                android:layout_width="40dp"
-                android:layout_height="45dp"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:scaleType="fitCenter"
-                android:src="@drawable/map"/>
+<!--            <ImageButton-->
+<!--                android:id="@+id/navButton2"-->
+<!--                android:layout_width="40dp"-->
+<!--                android:layout_height="45dp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:background="@android:color/transparent"-->
+<!--                android:scaleType="fitCenter"-->
+<!--                android:src="@drawable/map"/>-->
 
-            <ImageButton
-                android:id="@+id/navButton3"
-                android:layout_width="39dp"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:scaleType="fitCenter"
-                android:src="@drawable/save"/>
+<!--            <ImageButton-->
+<!--                android:id="@+id/navButton3"-->
+<!--                android:layout_width="39dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:background="@android:color/transparent"-->
+<!--                android:scaleType="fitCenter"-->
+<!--                android:src="@drawable/save"/>-->
 
-            <ImageButton
-                android:id="@+id/navButton4"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_weight="1"
-                android:background="@android:color/transparent"
-                android:scaleType="fitCenter"
-                android:src="@drawable/profile"/>
-        </LinearLayout>
+<!--            <ImageButton-->
+<!--                android:id="@+id/navButton4"-->
+<!--                android:layout_width="40dp"-->
+<!--                android:layout_height="40dp"-->
+<!--                android:layout_weight="1"-->
+<!--                android:background="@android:color/transparent"-->
+<!--                android:scaleType="fitCenter"-->
+<!--                android:src="@drawable/profile"/>-->
+        </RelativeLayout>
     </LinearLayout>
