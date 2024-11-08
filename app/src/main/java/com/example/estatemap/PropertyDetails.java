@@ -1,0 +1,71 @@
+package com.example.estatemap;
+
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.ImageView;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.bumptech.glide.Glide;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+public class PropertyDetails extends AppCompatActivity {
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    private TextView priceTextView;
+    private TextView roomsTextView;
+    private TextView locationTextView;
+    private TextView areaTextView;
+    private TextView ageTextView;
+    private TextView typeTextView;
+    private ImageView propertyImageView;;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_property_details);
+
+        // Initialize TextViews
+        propertyImageView = findViewById(R.id.image);
+        priceTextView = findViewById(R.id.price);
+        roomsTextView = findViewById(R.id.rooms);
+        locationTextView = findViewById(R.id.location);
+        areaTextView = findViewById(R.id.area);
+        ageTextView = findViewById(R.id.age);
+        typeTextView = findViewById(R.id.type);
+
+
+        // استرجاع imageURL من Intent
+        String imageURL = getIntent().getStringExtra("imageURL");
+
+        // استخدام imageURL لجلب بيانات العقار من Firestore
+        if (imageURL != null) {
+            db.collection("Apartment")
+                    .whereEqualTo("imageURL", imageURL) // جلب البيانات بناءً على imageURL
+                    .get()
+                    .addOnSuccessListener(queryDocumentSnapshots -> {
+                        if (!queryDocumentSnapshots.isEmpty()) {
+                            DocumentSnapshot document = queryDocumentSnapshots.getDocuments().get(0);
+                            Apartment apartment = document.toObject(Apartment.class);
+                            if (apartment != null) {
+                                displayPropertyDetails(apartment);
+                            }
+                        }
+                    })
+                    .addOnFailureListener(e -> Log.e("PropertyDetails", "Error fetching property details", e));
+        }
+    }
+
+    private void displayPropertyDetails(Apartment apartment) {
+            // Display image
+        Glide.with(this).load(apartment.getImageURL()).into(propertyImageView);
+        priceTextView.setText("Price: " + apartment.getPrice());
+        roomsTextView.setText("Rooms: " + apartment.getRooms());
+        locationTextView.setText("Location: " + apartment.getLocation());
+        areaTextView.setText("Area: " + apartment.getArea());
+        ageTextView.setText("Age: " + apartment.getAge());
+        typeTextView.setText("Type: " + apartment.getType());
+    }
+}

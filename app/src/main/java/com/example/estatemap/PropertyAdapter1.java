@@ -1,10 +1,14 @@
 package com.example.estatemap;
 
 
+import static androidx.core.content.ContextCompat.startActivity;
+
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
@@ -18,6 +22,7 @@ public class PropertyAdapter1 extends RecyclerView.Adapter<PropertyAdapter1.Prop
     private List<Apartment> propertyList;
 
     public PropertyAdapter1(List<Apartment> propertyList) {
+
         this.propertyList = propertyList;
     }
 
@@ -44,8 +49,22 @@ public class PropertyAdapter1 extends RecyclerView.Adapter<PropertyAdapter1.Prop
             // Optionally set a placeholder or error image
             holder.pictureImageView.setImageResource(R.drawable.house4);
         }
-    }
 
+    // Set OnClickListener to open a new Activity on click
+    holder.pictureImageView.setOnClickListener(new View.OnClickListener()
+    {
+        @Override
+        public void onClick (View v){
+        int currentPosition = holder.getAdapterPosition();
+        if (currentPosition != RecyclerView.NO_POSITION) {
+            Apartment currentProperty = propertyList.get(currentPosition);
+            Intent intent = new Intent(holder.itemView.getContext(), PropertyDetails.class); // Replace with your target activity
+            intent.putExtra("imageURL", currentProperty.getImageURL()); // Assume getId() gives property ID or unique identifier
+            holder.itemView.getContext().startActivity(intent);
+        }
+    }
+    });
+}
 
     @Override
     public int getItemCount() {
