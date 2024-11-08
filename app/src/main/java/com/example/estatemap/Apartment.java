@@ -12,8 +12,8 @@ public class Apartment {
 
     }
 
-    public Apartment(double price, String imageURL) {
-        this.price = price;
+    public Apartment( String imageURL) {
+        //this.price = price;
         this.imageURL = imageURL;
     }
     public Apartment(double price, String imageURL, int rooms, String location, double area, int age, String type) {

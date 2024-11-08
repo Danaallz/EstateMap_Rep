@@ -1,47 +1,49 @@
 package com.example.estatemap;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class HomePage extends AppCompatActivity {
+public class AllProperties extends AppCompatActivity {
+
     private PropertyAdapter1 propertyAdapter;
     private final List<Apartment> propertyList = new ArrayList<>();
-    private RecyclerView recyclerViewProperties;
+    private RecyclerView recyclerView;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home_page);
+        setContentView(R.layout.activity_all_properties);
 
-        recyclerViewProperties = findViewById(R.id.recyclerViewProperties);
+        //recyclerViewProperties = findViewById(R.id.recyclerView);
+        recyclerView=findViewById(R.id.recyclerView);
         //recyclerViewProperties.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        recyclerViewProperties.setLayoutManager(new GridLayoutManager(this, 2));
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         propertyAdapter = new PropertyAdapter1(propertyList);
-        recyclerViewProperties.setAdapter(propertyAdapter);
+        recyclerView.setAdapter(propertyAdapter);
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         if (auth.getCurrentUser() == null) {
-            Intent intent = new Intent(HomePage.this, SignIn.class);
+            Intent intent = new Intent(AllProperties.this, SignIn.class);
             Toast.makeText(this, "The error User is not logged ", Toast.LENGTH_SHORT).show();
             startActivity(intent);
             finish();
@@ -71,10 +73,4 @@ public class HomePage extends AppCompatActivity {
         }
         propertyAdapter.notifyDataSetChanged();
     }
-
-    public void SeeAll(View view){
-        Intent intent = new Intent(HomePage.this, AllProperties.class);
-        startActivity(intent);
-    }
 }
-

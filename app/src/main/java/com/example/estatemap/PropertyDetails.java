@@ -59,13 +59,13 @@ public class PropertyDetails extends AppCompatActivity {
     }
 
     private void displayPropertyDetails(Apartment apartment) {
-            // Display image
+            // Display image and other information
         Glide.with(this).load(apartment.getImageURL()).into(propertyImageView);
-        priceTextView.setText("Price: " + apartment.getPrice());
+        priceTextView.setText("Price: " + apartment.getPrice()+" SAR");
         roomsTextView.setText("Rooms: " + apartment.getRooms());
         locationTextView.setText("Location: " + apartment.getLocation());
-        areaTextView.setText("Area: " + apartment.getArea());
-        ageTextView.setText("Age: " + apartment.getAge());
+        areaTextView.setText("Area: " + apartment.getArea()+" m^2");
+        ageTextView.setText("Age: " + apartment.getAge()+" years");
         typeTextView.setText("Type: " + apartment.getType());
     }
 }
