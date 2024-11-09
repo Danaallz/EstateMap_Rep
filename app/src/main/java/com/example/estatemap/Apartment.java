@@ -8,8 +8,15 @@ public class Apartment {
     private double area;
     private double age;
     private String type;
-    public Apartment(){
 
+    private double rate;
+    public Apartment() {}
+
+    public Apartment(String imageURL, double price, String location, double rate) {
+        this.imageURL = imageURL;
+        this.price = price;
+        this.location = location;
+        this.rate = rate; // Initialize rate
     }
 
     public Apartment( String imageURL) {
@@ -53,6 +60,10 @@ public class Apartment {
     public String getImageURL() {
         return imageURL;
 
+    }
+
+    public double getRate() {
+        return rate;
     }
 
 }

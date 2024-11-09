@@ -12,6 +12,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -37,7 +38,7 @@ public class AllProperties extends AppCompatActivity {
         //recyclerViewProperties = findViewById(R.id.recyclerView);
         recyclerView=findViewById(R.id.recyclerView);
         //recyclerViewProperties.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         propertyAdapter = new PropertyAdapter1(propertyList);
         recyclerView.setAdapter(propertyAdapter);
 
@@ -66,9 +67,12 @@ public class AllProperties extends AppCompatActivity {
     private void onSuccess(QuerySnapshot queryDocumentSnapshots) {
         propertyList.clear();
         for (DocumentSnapshot document : queryDocumentSnapshots) {
-            Double price = document.getDouble("price") != null ? document.getDouble("price") : 20.3;
             String imageURL = document.getString("imageURL");
-            Apartment property = new Apartment(imageURL);
+            double price = document.getDouble("price") != null ? document.getDouble("price") : 0.0;
+            double rate = document.getDouble("rate") != null ? document.getDouble("rate") : 0.0; // Add rate
+            String location = document.getString("location");
+
+            Apartment property = new Apartment(imageURL, price, location, rate); // Pass rate to constructor
             propertyList.add(property);
         }
         propertyAdapter.notifyDataSetChanged();

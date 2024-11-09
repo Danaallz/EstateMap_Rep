@@ -35,7 +35,7 @@ public class HomePage extends AppCompatActivity {
 
         recyclerViewProperties = findViewById(R.id.recyclerViewProperties);
         //recyclerViewProperties.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        recyclerViewProperties.setLayoutManager(new GridLayoutManager(this, 2));
+        recyclerViewProperties.setLayoutManager(new LinearLayoutManager(this));
         propertyAdapter = new PropertyAdapter1(propertyList);
         recyclerViewProperties.setAdapter(propertyAdapter);
 
@@ -64,9 +64,12 @@ public class HomePage extends AppCompatActivity {
     private void onSuccess(QuerySnapshot queryDocumentSnapshots) {
         propertyList.clear();
         for (DocumentSnapshot document : queryDocumentSnapshots) {
-            Double price = document.getDouble("price") != null ? document.getDouble("price") : 20.3;
             String imageURL = document.getString("imageURL");
-            Apartment property = new Apartment(imageURL);
+            double price = document.getDouble("price") != null ? document.getDouble("price") : 0.0;
+            double rate = document.getDouble("rate") != null ? document.getDouble("rate") : 0.0;
+            String location = document.getString("location");
+
+            Apartment property = new Apartment(imageURL, price, location, rate); // Pass rate to constructor
             propertyList.add(property);
         }
         propertyAdapter.notifyDataSetChanged();
@@ -77,4 +80,3 @@ public class HomePage extends AppCompatActivity {
         startActivity(intent);
     }
 }
-
