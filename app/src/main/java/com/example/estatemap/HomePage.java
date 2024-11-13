@@ -54,7 +54,7 @@ public class HomePage extends AppCompatActivity {
     private void fetchDataFromFirestore() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("Apartment")
-                .limit(9)
+                .limit(6)
                 .get()
                 .addOnSuccessListener(this::onSuccess)
                 .addOnFailureListener(e -> Log.w("HomePage", "Error fetching data", e));
