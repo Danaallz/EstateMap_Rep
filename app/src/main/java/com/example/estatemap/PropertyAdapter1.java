@@ -1,11 +1,16 @@
 package com.example.estatemap;
 
 
+import static androidx.core.content.ContextCompat.startActivity;
+
+import android.content.Intent;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,6 +24,19 @@ public class PropertyAdapter1 extends RecyclerView.Adapter<PropertyAdapter1.Prop
 
     public PropertyAdapter1(List<Apartment> propertyList) {
         this.propertyList = propertyList;
+    }
+
+    public static class PropertyViewHolder extends RecyclerView.ViewHolder {
+        ImageView propertyImage;
+        TextView propertyPrice, propertyRate, propertyLocation;
+
+        public PropertyViewHolder(@NonNull View itemView) {
+            super(itemView);
+            propertyImage = itemView.findViewById(R.id.propertyImage);
+            propertyPrice = itemView.findViewById(R.id.propertyPrice);
+            propertyRate = itemView.findViewById(R.id.propertyRate);
+            propertyLocation = itemView.findViewById(R.id.propertyLocation);
+        }
     }
 
     @NonNull
@@ -37,28 +55,38 @@ public class PropertyAdapter1 extends RecyclerView.Adapter<PropertyAdapter1.Prop
             // Load image with Glide
             Glide.with(holder.itemView.getContext())
                     .load(picUrl)
-                    .into(holder.pictureImageView);
+                    .into(holder.propertyImage);
         } else {
             // Log a warning if the URL is null
             Log.w("PropertyAdapter1", "Image URL is null or empty for property: " + property.getPrice());
             // Optionally set a placeholder or error image
-            holder.pictureImageView.setImageResource(R.drawable.house4);
+            holder.propertyImage.setImageResource(R.drawable.house4); // Add a default image
+        }
+
+        // Set the price, rate, and location
+        holder.propertyPrice.setText(property.getPrice() + " SAR");
+//        holder.propertyRate.setText("Rate: " + property.getRate());
+        holder.propertyLocation.setText(property.getLocation());
+
+    // Set OnClickListener to open a new Activity on click
+    holder.propertyImage.setOnClickListener(new View.OnClickListener()
+    {
+        @Override
+        public void onClick (View v){
+        int currentPosition = holder.getAdapterPosition();
+        if (currentPosition != RecyclerView.NO_POSITION) {
+            Apartment currentProperty = propertyList.get(currentPosition);
+            Intent intent = new Intent(holder.itemView.getContext(), PropertyDetails.class); // Replace with your target activity
+            intent.putExtra("imageURL", currentProperty.getImageURL()); // Assume getId() gives property ID or unique identifier
+            holder.itemView.getContext().startActivity(intent);
         }
     }
-
+    });
+}
 
     @Override
     public int getItemCount() {
         return propertyList.size();
-    }
-
-    public   static class PropertyViewHolder extends RecyclerView.ViewHolder {
-        ImageView pictureImageView;
-
-        public PropertyViewHolder(@NonNull View itemView) {
-            super(itemView);
-            pictureImageView = itemView.findViewById(R.id.image_property);
-        }
     }
 }
 
