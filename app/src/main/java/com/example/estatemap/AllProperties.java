@@ -72,7 +72,7 @@ public class AllProperties extends AppCompatActivity {
             double rate = document.getDouble("rate") != null ? document.getDouble("rate") : 0.0; // Add rate
             String location = document.getString("location");
 
-            Apartment property = new Apartment(imageURL, price, location, rate); // Pass rate to constructor
+            Apartment property = new Apartment(imageURL, price, location, rate);// Pass rate to constructor
             propertyList.add(property);
         }
         propertyAdapter.notifyDataSetChanged();
