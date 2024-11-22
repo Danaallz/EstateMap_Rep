@@ -1,10 +1,11 @@
 <resources>
     <string name="app_name">EstateMap</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="search_resaults">Search Resaults</string>
+
     <string-array name="filter_options">
-        <item>Apartment</item>
-        <item>Villa</item>
-        <item>bullding</item>
+        <item>For sale</item>
+        <item>Foe rent</item>
         <item>Low-High Price</item>
         <item>High-Low Price</item>
     </string-array>

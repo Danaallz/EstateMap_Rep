@@ -99,10 +99,10 @@ public class SearchResultsActivity extends AppCompatActivity {
                             Log.d(TAG, "Document ID: " + document.getId() + " | Type: " + document.getString("type"));
                             Double price = document.getDouble("price") != null ? document.getDouble("price") : 20.3;
                             String imageURL = document.getString("imageURL");
-                            String classification = document.getString("classification"); // "for sell" or "for rent"
+                            String Classification = document.getString("classification"); // "for sell" or "for rent"
 
                             if (imageURL != null && !imageURL.isEmpty()) {
-                                Apartment property = new Apartment(price, imageURL, classification);
+                                Apartment property = new Apartment(price, imageURL,Classification );
                                 filteredPropertyList.add(property);
                             } else {
                                 Log.w(TAG, "Document with ID " + document.getId() + " is missing a valid imageURL.");

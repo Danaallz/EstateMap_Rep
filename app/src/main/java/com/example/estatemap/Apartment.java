@@ -8,9 +8,9 @@ public class Apartment {
     private double area;
     private double age;
     private String type;
-
     private double rate;
-    public Apartment() {}
+    private String Classification;
+
 
     public Apartment(String imageURL, double price, String location, double rate) {
         this.imageURL = imageURL;
@@ -20,10 +20,11 @@ public class Apartment {
     }
 
     public Apartment( String imageURL) {
-        //this.price = price;
+        this.price = price;
         this.imageURL = imageURL;
     }
-    public Apartment(double price, String imageURL, int rooms, String location, double area, int age, String type) {
+
+    public Apartment(double price, String imageURL, int rooms, String location, double area, int age, String type, String Classification) {
         this.price = price;
         this.imageURL = imageURL;
         this.rooms = rooms;
@@ -31,6 +32,14 @@ public class Apartment {
         this.area = area;
         this.age = age;
         this.type = type;
+        this.Classification = Classification;
+
+    }
+
+    public Apartment(Double price, String imageURL, String classification) {
+        this.price = price;
+        this.imageURL = imageURL;
+        this.Classification = Classification;
     }
 
     public int getRooms() {
@@ -63,7 +72,12 @@ public class Apartment {
     }
 
     public double getRate() {
+
         return rate;
+    }
+
+    public String getClassification() {
+        return Classification;
     }
 
 }
