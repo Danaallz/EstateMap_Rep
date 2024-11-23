@@ -49,15 +49,17 @@ public class SearchResultsActivity extends AppCompatActivity {
 
         // Get the search query from the Intent
         searchQuery = getIntent().getStringExtra("searchQuery");
+
         if (searchQuery == null || searchQuery.isEmpty()) {
-            Log.w(TAG, "No search query received");
-            Toast.makeText(this, "Invalid search query", Toast.LENGTH_SHORT).show();
-            emptyView.setVisibility(View.VISIBLE);
-            return;
+            Log.w(TAG, "No search query received. Fetching all properties.");
+            // Fetch all data from Firestore if no query is provided
+            fetchFilteredDataFromFirestore();
+        } else {
+            Log.d(TAG, "Search query received: " + searchQuery);
+            // Fetch filtered data based on the search query
+            fetchFilteredDataFromFirestore(searchQuery);
         }
 
-        // Fetch the data from Firestore based on the search query
-        fetchFilteredDataFromFirestore(searchQuery);
 
         // Set up the filter spinner for price and classification filtering
         ArrayAdapter<CharSequence> filterAdapter = ArrayAdapter.createFromResource(this,
@@ -103,6 +105,51 @@ public class SearchResultsActivity extends AppCompatActivity {
 
                             if (imageURL != null && !imageURL.isEmpty()) {
                                 Apartment property = new Apartment(price, imageURL,Classification );
+                                filteredPropertyList.add(property);
+                            } else {
+                                Log.w(TAG, "Document with ID " + document.getId() + " is missing a valid imageURL.");
+                            }
+                        }
+
+                        if (filteredPropertyList.isEmpty()) {
+                            emptyView.setVisibility(View.VISIBLE);
+                            recyclerViewSearchResults.setVisibility(View.GONE);
+                        } else {
+                            emptyView.setVisibility(View.GONE);
+                            recyclerViewSearchResults.setVisibility(View.VISIBLE);
+                        }
+
+                        propertyAdapter.notifyDataSetChanged();
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    Log.w(TAG, "Error fetching data", e);
+                    Toast.makeText(this, "Error fetching data", Toast.LENGTH_SHORT).show();
+                });
+    }
+    private void fetchFilteredDataFromFirestore() {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        Log.d(TAG, "Fetching all properties from the Apartment collection"); // Log the action
+
+        db.collection("Apartment")
+                .get()
+                .addOnSuccessListener(queryDocumentSnapshots -> {
+                    filteredPropertyList.clear();
+                    if (queryDocumentSnapshots == null || queryDocumentSnapshots.isEmpty()) {
+                        Log.d(TAG, "No documents found in the Apartment collection.");
+                        emptyView.setVisibility(View.VISIBLE);
+                        recyclerViewSearchResults.setVisibility(View.GONE);
+                        Toast.makeText(this, "No properties found", Toast.LENGTH_SHORT).show();
+                    } else {
+                        for (DocumentSnapshot document : queryDocumentSnapshots.getDocuments()) {
+                            Log.d(TAG, "Document ID: " + document.getId() + " | Type: " + document.getString("type"));
+                            Double price = document.getDouble("price") != null ? document.getDouble("price") : 20.3;
+                            String imageURL = document.getString("imageURL");
+                            String classification = document.getString("classification"); // "for sell" or "for rent"
+
+                            if (imageURL != null && !imageURL.isEmpty()) {
+                                Apartment property = new Apartment(price, imageURL, classification);
                                 filteredPropertyList.add(property);
                             } else {
                                 Log.w(TAG, "Document with ID " + document.getId() + " is missing a valid imageURL.");

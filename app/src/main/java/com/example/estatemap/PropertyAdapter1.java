@@ -69,19 +69,31 @@ public class PropertyAdapter1 extends RecyclerView.Adapter<PropertyAdapter1.Prop
         holder.propertyLocation.setText(property.getLocation());
 
     // Set OnClickListener to open a new Activity on click
-    holder.propertyImage.setOnClickListener(new View.OnClickListener()
-    {
-        @Override
-        public void onClick (View v){
-        int currentPosition = holder.getAdapterPosition();
-        if (currentPosition != RecyclerView.NO_POSITION) {
-            Apartment currentProperty = propertyList.get(currentPosition);
-            Intent intent = new Intent(holder.itemView.getContext(), PropertyDetails.class); // Replace with your target activity
-            intent.putExtra("imageURL", currentProperty.getImageURL()); // Assume getId() gives property ID or unique identifier
-            holder.itemView.getContext().startActivity(intent);
-        }
-    }
-    });
+//    holder.propertyImage.setOnClickListener(new View.OnClickListener()
+//    {
+//        @Override
+//        public void onClick (View v){
+//        int currentPosition = holder.getAdapterPosition();
+//        if (currentPosition != RecyclerView.NO_POSITION) {
+//            Apartment currentProperty = propertyList.get(currentPosition);
+//            Intent intent = new Intent(holder.itemView.getContext(), PropertyDetails.class); // Replace with your target activity
+//            intent.putExtra("imageURL", currentProperty.getImageURL()); // Assume getId() gives property ID or unique identifier
+//            holder.itemView.getContext().startActivity(intent);
+//        }
+//    }
+//    });
+        holder.propertyImage.setOnClickListener(v -> {
+            int currentPosition = holder.getAdapterPosition();
+            if (currentPosition != RecyclerView.NO_POSITION) {
+                Apartment currentProperty = propertyList.get(currentPosition);
+
+                // إرسال رابط الصورة فقط
+                Intent intent = new Intent(holder.itemView.getContext(), PropertyDetails.class);
+                intent.putExtra("imageURL", currentProperty.getImageURL());
+                holder.itemView.getContext().startActivity(intent);
+            }
+        });
+
 }
 
     @Override

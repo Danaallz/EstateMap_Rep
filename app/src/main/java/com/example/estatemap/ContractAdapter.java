@@ -1,7 +1,4 @@
 package com.example.estatemap;
-
-import static android.os.Build.VERSION_CODES.R;
-
 import android.app.Activity;
 import android.content.Context;
 import android.view.LayoutInflater;

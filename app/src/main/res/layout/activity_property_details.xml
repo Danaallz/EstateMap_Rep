@@ -84,4 +84,15 @@
         tools:layout_editor_absoluteX="2dp"
         tools:layout_editor_absoluteY="521dp"
         android:layout_marginBottom="20dp"/>
+    <TextView
+        android:id="@+id/classification"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20dp"
+        android:fontFamily="serif"
+        android:textStyle="bold"
+        tools:layout_editor_absoluteX="2dp"
+        tools:layout_editor_absoluteY="521dp"
+        android:layout_marginBottom="20dp"/>
+
 </LinearLayout>

@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -27,6 +28,7 @@ public class HomePage extends AppCompatActivity {
     private PropertyAdapter1 propertyAdapter;
     private final List<Apartment> propertyList = new ArrayList<>();
     private RecyclerView recyclerViewProperties;
+    private SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +36,11 @@ public class HomePage extends AppCompatActivity {
         setContentView(R.layout.activity_home_page);
 
         recyclerViewProperties = findViewById(R.id.recyclerViewProperties);
-        //recyclerViewProperties.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        recyclerViewProperties.setLayoutManager(new LinearLayoutManager(this));
+        recyclerViewProperties.setLayoutManager(new GridLayoutManager(this, 1));
         propertyAdapter = new PropertyAdapter1(propertyList);
         recyclerViewProperties.setAdapter(propertyAdapter);
+
+        searchView = findViewById(R.id.searchView);
 
         FirebaseAuth auth = FirebaseAuth.getInstance();
         if (auth.getCurrentUser() == null) {
@@ -49,6 +52,22 @@ public class HomePage extends AppCompatActivity {
             Toast.makeText(this, "The User is logged ", Toast.LENGTH_SHORT).show();
             fetchDataFromFirestore();
         }
+
+        // Set up search functionality
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                Intent intent = new Intent(HomePage.this, SearchResultsActivity.class);
+                intent.putExtra("searchQuery", query.trim().toLowerCase());
+                startActivity(intent);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
     }
 
     private void fetchDataFromFirestore() {
@@ -64,19 +83,20 @@ public class HomePage extends AppCompatActivity {
     private void onSuccess(QuerySnapshot queryDocumentSnapshots) {
         propertyList.clear();
         for (DocumentSnapshot document : queryDocumentSnapshots) {
+            Double price = document.getDouble("price") != null ? document.getDouble("price") : 20.3;
             String imageURL = document.getString("imageURL");
-            double price = document.getDouble("price") != null ? document.getDouble("price") : 0.0;
+            String classification = document.getString("classification");
+            //Apartment property = new Apartment(price, imageURL, classification);
             double rate = document.getDouble("rate") != null ? document.getDouble("rate") : 0.0;
             String location = document.getString("location");
-
-            Apartment property = new Apartment(imageURL, price, location, rate); // Pass rate to constructor
+            Apartment property = new Apartment(imageURL, price, location, rate,classification); // Pass rate to constructor
             propertyList.add(property);
         }
         propertyAdapter.notifyDataSetChanged();
     }
-
     public void SeeAll(View view){
         Intent intent = new Intent(HomePage.this, AllProperties.class);
         startActivity(intent);
-    }
+}
+
 }

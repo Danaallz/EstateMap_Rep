@@ -22,7 +22,7 @@
                 android:layout_height="55dp"
                 android:layout_weight="1"
                 android:scaleType="fitStart"
-                android:src="@drawable/ejar"/>
+                android:src="@drawable/ejar" />
 
             <ImageView
                 android:id="@+id/right_logo"

@@ -47,8 +47,8 @@
                 android:background="@android:color/white"
                 android:padding="8dp">
 
-                <Button
-                    android:id="@+id/searchButton"
+                <SearchView
+                    android:id="@+id/searchView"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
                     android:onClick="searchButton"

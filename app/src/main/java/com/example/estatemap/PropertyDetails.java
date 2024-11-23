@@ -20,6 +20,7 @@ public class PropertyDetails extends AppCompatActivity {
     private TextView areaTextView;
     private TextView ageTextView;
     private TextView typeTextView;
+    private TextView classification;
     private ImageView propertyImageView;;
 
     @Override
@@ -35,6 +36,7 @@ public class PropertyDetails extends AppCompatActivity {
         areaTextView = findViewById(R.id.area);
         ageTextView = findViewById(R.id.age);
         typeTextView = findViewById(R.id.type);
+        classification= findViewById(R.id.classification);
 
 
         // استرجاع imageURL من Intent
@@ -67,5 +69,7 @@ public class PropertyDetails extends AppCompatActivity {
         areaTextView.setText("Area: " + apartment.getArea()+" m^2");
         ageTextView.setText("Age: " + apartment.getAge()+" years");
         typeTextView.setText("Type: " + apartment.getType());
+        classification.setText("classification : " +apartment.getClassification());
+
     }
 }

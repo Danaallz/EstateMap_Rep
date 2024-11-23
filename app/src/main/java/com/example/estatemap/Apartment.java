@@ -12,16 +12,24 @@ public class Apartment {
     private String Classification;
 
 
-    public Apartment(String imageURL, double price, String location, double rate) {
+    public Apartment(String imageURL, double price, String location, double rate,String Classification) {
         this.imageURL = imageURL;
         this.price = price;
         this.location = location;
         this.rate = rate; // Initialize rate
+        this.Classification=Classification;
     }
 
     public Apartment( String imageURL) {
         this.price = price;
         this.imageURL = imageURL;
+    }
+    public Apartment(String imageURL, double price, String location, double rate) {
+        this.imageURL = imageURL;
+        this.price = price;
+        this.location = location;
+        this.rate = rate; // Initialize rate
+        this.Classification=Classification;
     }
 
     public Apartment(double price, String imageURL, int rooms, String location, double area, int age, String type, String Classification) {

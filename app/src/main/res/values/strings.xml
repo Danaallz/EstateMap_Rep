@@ -1,15 +1,13 @@
 <resources>
     <string name="app_name">EstateMap</string>
     <string name="title_activity_maps">MapsActivity</string>
-    <string name="search_resaults">Search Resaults</string>
-
+    <string name="search_resaults">Search the house</string>
     <string-array name="filter_options">
-        <item>For sale</item>
-        <item>Foe rent</item>
-        <item>Low-High Price</item>
-        <item>High-Low Price</item>
-    </string-array>
-    >
+        <item>For Sale</item>
+        <item>For Rent</item>
+        <item>Low to High</item>
+        <item>High to Low</item>
+    </string-array>>
     <!--    <string-array name="filter_options2">-->
     <!--        <item>Low-High Price</item>-->
     <!--        <item>High-Low Price</item>-->
