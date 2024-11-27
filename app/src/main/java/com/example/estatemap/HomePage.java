@@ -1,14 +1,18 @@
 package com.example.estatemap;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.SearchView;
@@ -34,6 +38,28 @@ public class HomePage extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
+
+        BottomNavigationView bottomNav = findViewById(R.id.bottom_nav);
+
+        // Set the listener for navigation item selection
+        bottomNav.setOnItemSelectedListener(item -> {
+            int id = item.getItemId();
+
+            if (id == R.id.map) {
+                Toast.makeText(HomePage.this, "Map clicked!", Toast.LENGTH_SHORT).show();
+                Intent mapIntent = new Intent(HomePage.this, MapsActivity.class);
+                startActivity(mapIntent);
+                return true;
+            } else if (id == R.id.save) {
+                // Handle "save" action
+                return true;
+            } else if (id == R.id.profile) {
+                // Handle "profile" action
+                return true;
+            } else {
+                return super.onOptionsItemSelected(item);
+            }
+        });
 
         recyclerViewProperties = findViewById(R.id.recyclerViewProperties);
         recyclerViewProperties.setLayoutManager(new GridLayoutManager(this, 1));
@@ -70,6 +96,13 @@ public class HomePage extends AppCompatActivity {
         });
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu for the navigation bar
+        getMenuInflater().inflate(R.menu.bottom_nav_menu, menu);
+        return true;
+    }
+
     private void fetchDataFromFirestore() {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("Apartment")
@@ -86,17 +119,16 @@ public class HomePage extends AppCompatActivity {
             Double price = document.getDouble("price") != null ? document.getDouble("price") : 20.3;
             String imageURL = document.getString("imageURL");
             String classification = document.getString("classification");
-            //Apartment property = new Apartment(price, imageURL, classification);
             double rate = document.getDouble("rate") != null ? document.getDouble("rate") : 0.0;
             String location = document.getString("location");
-            Apartment property = new Apartment(imageURL, price, location, rate,classification); // Pass rate to constructor
+            Apartment property = new Apartment(imageURL, price, location, rate, classification);
             propertyList.add(property);
         }
         propertyAdapter.notifyDataSetChanged();
     }
-    public void SeeAll(View view){
+
+    public void SeeAll(View view) {
         Intent intent = new Intent(HomePage.this, AllProperties.class);
         startActivity(intent);
-}
-
+    }
 }
