@@ -34,7 +34,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
         // Initialize the map fragment and set the map ready callback
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+                .findFragmentById(R.id.map_fragment);
         if (mapFragment != null) {
             mapFragment.getMapAsync(this);
         } else {
@@ -72,7 +72,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         Double latitude = document.getDouble("latitude");
                         Double longitude = document.getDouble("longitude");
                         String type = document.getString("type");
-                        String price = document.getString("price");
+                        Double price = document.getDouble("price");
 
                         // Check if the property has valid coordinates
                         if (latitude != null && longitude != null) {

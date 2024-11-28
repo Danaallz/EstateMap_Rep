@@ -12,9 +12,6 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <meta-data
-        android:name="com.google.android.geo.API_KEY"
-        android:value="AIzaSyBV9mz61-mS0fX3ipvnT5oBgg8gx2aCwjYE" />
 
     <application
         android:allowBackup="true"
@@ -37,10 +34,6 @@
         <activity
             android:name=".PropertyDetails"
             android:exported="false" />
-
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCZy1mj7mo5r4DKRM8U-Efz_j1RfpIxWfI" />
 
         <activity
             android:name=".HomePage"
@@ -67,6 +60,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDP_hUPsQNcvRzt_gYnYaV17eLHlqfczm4"/>
+
     </application>
 
 </manifest>

@@ -11,13 +11,14 @@ public class Apartment {
     private double rate;
     private String Classification;
 
+    public  Apartment(){}
 
-    public Apartment(String imageURL, double price, String location, double rate,String Classification) {
+    public Apartment(String imageURL, double price, String location, double rate,String classification) {
         this.imageURL = imageURL;
         this.price = price;
         this.location = location;
         this.rate = rate; // Initialize rate
-        this.Classification=Classification;
+        this.Classification=classification;
     }
 
     public Apartment( String imageURL) {
@@ -32,22 +33,11 @@ public class Apartment {
         this.Classification=Classification;
     }
 
-    public Apartment(double price, String imageURL, int rooms, String location, double area, int age, String type, String Classification) {
-        this.price = price;
-        this.imageURL = imageURL;
-        this.rooms = rooms;
-        this.location = location;
-        this.area = area;
-        this.age = age;
-        this.type = type;
-        this.Classification = Classification;
-
-    }
 
     public Apartment(Double price, String imageURL, String classification) {
         this.price = price;
         this.imageURL = imageURL;
-        this.Classification = Classification;
+        this.Classification = classification;
     }
 
     public int getRooms() {

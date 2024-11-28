@@ -53,6 +53,8 @@ dependencies {
     // Google Play Services for Maps
     implementation("com.google.android.gms:play-services-maps:19.0.0")
     implementation("androidx.activity:activity:1.9.3")
+    implementation("com.google.android.gms:play-services-maps:latest_version")
+
 
     // Testing dependencies
     testImplementation("junit:junit:4.13.2")
