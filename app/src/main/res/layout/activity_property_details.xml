@@ -1,98 +1,219 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".PropertyDetails"
-    android:orientation="vertical"
-    >
+    tools:context=".PropertyDetails">
 
-    <ImageView
-        android:id="@+id/image"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="365dp"
-        android:scaleType="centerCrop"
-        tools:layout_editor_absoluteX="180dp"
-        tools:layout_editor_absoluteY="16dp"
-        android:layout_marginBottom="30dp"/>
+        android:layout_height="match_parent"
+        tools:context=".PropertyDetails"
+        android:orientation="vertical"
+        android:padding="16dp">
 
-    <TextView
-        android:id="@+id/price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Title"
-        android:textSize="20dp"
-        android:fontFamily="serif"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="2dp"
-        tools:layout_editor_absoluteY="142dp"
-        android:layout_marginBottom="20dp"/>
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="365dp"
+            android:scaleType="centerCrop"
+            android:layout_marginBottom="30dp" />
 
-    <TextView
-        android:id="@+id/rooms"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:fontFamily="serif"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="2dp"
-        tools:layout_editor_absoluteY="216dp"
-        android:layout_marginBottom="20dp"/>
+        <TextView
+            android:id="@+id/price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="20000 SAR"
+            android:textSize="25dp"
+            android:fontFamily="@font/poppins_semibold"
+            tools:layout_editor_absoluteX="2dp"
+            tools:layout_editor_absoluteY="142dp" />
 
-    <TextView
-        android:id="@+id/location"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:fontFamily="serif"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="2dp"
-        tools:layout_editor_absoluteY="295dp"
-        android:layout_marginBottom="20dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Property Information:"
+            android:textSize="20sp"
+            android:fontFamily="@font/poppins_semibold" />
 
-    <TextView
-        android:id="@+id/area"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:fontFamily="serif"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="2dp"
-        tools:layout_editor_absoluteY="375dp"
-        android:layout_marginBottom="20dp"/>
+        <!-- Location -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp">
 
-    <TextView
-        android:id="@+id/age"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:fontFamily="serif"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="2dp"
-        tools:layout_editor_absoluteY="445dp"
-        android:layout_marginBottom="20dp"/>
+            <ImageView
+                android:id="@+id/location_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_location"
+                android:layout_marginEnd="8dp" />
 
-    <TextView
-        android:id="@+id/type"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:fontFamily="serif"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="2dp"
-        tools:layout_editor_absoluteY="521dp"
-        android:layout_marginBottom="20dp"/>
-    <TextView
-        android:id="@+id/classification"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20dp"
-        android:fontFamily="serif"
-        android:textStyle="bold"
-        tools:layout_editor_absoluteX="2dp"
-        tools:layout_editor_absoluteY="521dp"
-        android:layout_marginBottom="20dp"/>
+            <TextView
+                android:id="@+id/location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jeddah, Saudi Arabia"
+                android:textSize="20sp"
+                android:fontFamily="@font/poppins_light"
+                android:layout_marginTop="5dp"/>
+        </LinearLayout>
 
-</LinearLayout>
+        <!-- Area -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp">
+
+            <ImageView
+                android:id="@+id/area_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_area"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:id="@+id/area"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="250 sqm"
+                android:textSize="20sp"
+                android:fontFamily="@font/poppins_light"
+                android:layout_marginTop="5dp"/>
+        </LinearLayout>
+
+        <!-- Type -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp">
+
+            <ImageView
+                android:id="@+id/type_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_type"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:id="@+id/type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Villa"
+                android:textSize="20sp"
+                android:fontFamily="@font/poppins_light"
+                android:layout_marginTop="5dp"/>
+        </LinearLayout>
+
+        <!-- Rooms -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp">
+
+            <ImageView
+                android:id="@+id/rooms_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_rooms"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:id="@+id/rooms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3 Rooms"
+                android:textSize="20sp"
+                android:fontFamily="@font/poppins_light"
+                android:layout_marginTop="5dp"/>
+        </LinearLayout>
+
+        <!-- Classification -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp">
+
+            <ImageView
+                android:id="@+id/classification_icon"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_classification"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:id="@+id/classification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Residential"
+                android:textSize="20sp"
+                android:fontFamily="@font/poppins_light"
+                android:layout_marginTop="5dp"/>
+        </LinearLayout>
+
+        <!-- Age -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp">
+
+            <ImageView
+                android:id="@+id/age_icon"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:src="@drawable/ic_age"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:id="@+id/age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="5 Years"
+                android:textSize="20sp"
+                android:fontFamily="@font/poppins_light" />
+        </LinearLayout>
+
+        <!-- Agent Info -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Agent Information:"
+            android:textSize="20sp"
+            android:fontFamily="@font/poppins_semibold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="15dp">
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_call"
+                android:layout_marginEnd="8dp" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_whatsapp"
+                android:layout_marginEnd="8dp" />
+
+            <ImageView
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_email2"
+                android:layout_marginEnd="8dp" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>
