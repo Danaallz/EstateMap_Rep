@@ -22,9 +22,6 @@ import java.util.List;
 public class PropertyAdapter1 extends RecyclerView.Adapter<PropertyAdapter1.PropertyViewHolder> {
     private List<Apartment> propertyList;
 
-    public PropertyAdapter1(List<Apartment> propertyList) {
-        this.propertyList = propertyList;
-    }
 
     public static class PropertyViewHolder extends RecyclerView.ViewHolder {
         ImageView propertyImage;
@@ -68,7 +65,7 @@ public class PropertyAdapter1 extends RecyclerView.Adapter<PropertyAdapter1.Prop
 //        holder.propertyRate.setText("Rate: " + property.getRate());
         holder.propertyLocation.setText(property.getLocation());
 
-    // Set OnClickListener to open a new Activity on click
+        // Set OnClickListener to open a new Activity on click
 //    holder.propertyImage.setOnClickListener(new View.OnClickListener()
 //    {
 //        @Override
@@ -94,12 +91,11 @@ public class PropertyAdapter1 extends RecyclerView.Adapter<PropertyAdapter1.Prop
             }
         });
 
-}
-
-    @Override
-    public int getItemCount() {
-        return propertyList.size();
     }
-}
+        @Override
+        public int getItemCount () {
+            return propertyList.size();
+        }
+    }
 
 

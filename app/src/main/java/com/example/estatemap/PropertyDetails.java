@@ -1,7 +1,10 @@
 package com.example.estatemap;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -21,7 +24,8 @@ public class PropertyDetails extends AppCompatActivity {
     private TextView ageTextView;
     private TextView typeTextView;
     private TextView classification;
-    private ImageView propertyImageView;;
+    private ImageView propertyImageView;
+    ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +40,7 @@ public class PropertyDetails extends AppCompatActivity {
         areaTextView = findViewById(R.id.area);
         ageTextView = findViewById(R.id.age);
         typeTextView = findViewById(R.id.type);
-        classification= findViewById(R.id.classification);
+        classification = findViewById(R.id.classification);
 
 
         // استرجاع imageURL من Intent
@@ -61,15 +65,25 @@ public class PropertyDetails extends AppCompatActivity {
     }
 
     private void displayPropertyDetails(Apartment apartment) {
-            // Display image and other information
+        // Display image and other information
         Glide.with(this).load(apartment.getImageURL()).into(propertyImageView);
-        priceTextView.setText("Price: " + apartment.getPrice()+" SAR");
+        priceTextView.setText("Price: " + apartment.getPrice() + " SAR");
         roomsTextView.setText("Rooms: " + apartment.getRooms());
         locationTextView.setText("Location: " + apartment.getLocation());
-        areaTextView.setText("Area: " + apartment.getArea()+" m^2");
-        ageTextView.setText("Age: " + apartment.getAge()+" years");
+        areaTextView.setText("Area: " + apartment.getArea() + " m^2");
+        ageTextView.setText("Age: " + apartment.getAge() + " years");
         typeTextView.setText("Type: " + apartment.getType());
-        classification.setText("classification : " +apartment.getClassification());
+        classification.setText("classification : " + apartment.getClassification());
 
+
+        ImageButton favoriteButton = findViewById(R.id.favorite_button);
+        favoriteButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Navigate to AppointmentActivity
+                Intent intent = new Intent(PropertyDetails.this, Appointment.class);
+                startActivity(intent);
+            }
+        });
     }
 }
